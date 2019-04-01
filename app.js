@@ -5,7 +5,7 @@ var request = require('request');
 var io = require('socket.io')(server);
 var iocilent = require('socket.io-client');
 var lguid = 'bukidnon';
-var cloud = iocilent.connect('https://tagabukid-panganud-aguilarufino.c9users.io:8080');
+var cloud = iocilent.connect('http://122.54.200.110:9000');
 
 server.listen(3000,function(){
 	console.log('SERVER RUNNING AT PORT 3000 WITH LGUID = ' + lguid);
@@ -45,7 +45,7 @@ server.listen(3000,function(){
 	},10000);
 
 	cloud.on('Message', (data) => {
-		console.log('receive : ' + data);
+		// console.log('receive : ' + data);
 	});
 
 });

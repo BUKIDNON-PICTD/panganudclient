@@ -3,13 +3,13 @@
 <script>
  
 
-  $(function () {
-    var socket = io.connect('http://10.30.0.34:3001');
-  	socket.emit('serveronline', '059-01');
-    socket.on('sarverupdate', function(data){
-      $('#serverdata').append($('<li>').text(data));
-    });
-  });
+  // $(function () {
+  //   var socket = io.connect('http://10.30.0.34:3001');
+  // 	socket.emit('serveronline', '059-01');
+  //   socket.on('sarverupdate', function(data){
+  //     $('#serverdata').append($('<li>').text(data));
+  //   });
+  // });
 </script>
 <ul id="serverdata">
 </ul>

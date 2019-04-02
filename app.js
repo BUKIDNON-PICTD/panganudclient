@@ -12,24 +12,24 @@ server.listen(3000,function(){
 	//log in to cloud if online
 	cloud.emit('serveronline', lguid);
 
-	cloud.on('serverrequest'+lguid, function(data,fn){
-		request.post({
-			url:'http://localhost:8072/osiris3/json/etracs25/TagabukidHRMISDashReportService.getCountByQuery',
-			json:data
-		},function (error, response, body) {
-		    if (!error && response.statusCode == 200) {
-		       console.log(body); 
-		       fn(body);
-		     }
-		});
-	});
+	// cloud.on('serverrequest'+lguid, function(data,fn){
+	// 	request.post({
+	// 		url:'http://localhost:8072/osiris3/json/etracs25/TagabukidHRMISDashReportService.getCountByQuery',
+	// 		json:data
+	// 	},function (error, response, body) {
+	// 	    if (!error && response.statusCode == 200) {
+	// 	       console.log(body); 
+	// 	       fn(body);
+	// 	     }
+	// 	});
+	// });
 	
-	cloud.on('servertestdata'+lguid, function(data,fn){
-		console.log("FETCH DATA FROM "+ lguid +" USING SAMPLE PARAMETER = " + data.sampleparam);
-	    console.log('SENDING DATA BACK TO PANGANUD SERVER');
-		var sampledata = "HELLO " + data.sampleparam;
-		fn(sampledata);
-	});
+	// cloud.on('servertestdata'+lguid, function(data,fn){
+	// 	console.log("FETCH DATA FROM "+ lguid +" USING SAMPLE PARAMETER = " + data.sampleparam);
+	//     console.log('SENDING DATA BACK TO PANGANUD SERVER');
+	// 	var sampledata = "HELLO " + data.sampleparam;
+	// 	fn(sampledata);
+	// });
 
 	setInterval(function(){
 		request.post({

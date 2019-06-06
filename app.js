@@ -4,8 +4,8 @@ var request = require('request');
 var io = require('socket.io')(server);
 var iocilent = require('socket.io-client');
 var lguid = 'rufy';
-// var cloud = iocilent.connect('http://122.54.200.110:9000');
-var cloud = iocilent.connect('http://localhost:9000');
+var cloud = iocilent.connect('http://122.54.200.110:9000');
+// var cloud = iocilent.connect('http://localhost:9000');
 var connected = false;
 
 

@@ -3,9 +3,9 @@ var server = require('http').Server(app);
 var request = require('request');
 var io = require('socket.io')(server);
 var iocilent = require('socket.io-client');
-var lguid = 'bukidnon';
-var cloud = iocilent.connect('http://122.54.200.110:9000');
-// var cloud = iocilent.connect('http://localhost:9000');
+var lguid = 'rufy';
+// var cloud = iocilent.connect('http://122.54.200.110:9000');
+var cloud = iocilent.connect('http://localhost:9000');
 var connected = false;
 
 
@@ -17,23 +17,40 @@ server.listen(3000,function(){
 
 	cloud.emit('message', "Hello " + lguid);
 
-	// cloud.on('serverrequestbukidnon', function(data,fn){
+	// cloud.on('serverrequest', (data,fn) => {
 	// 	console.log(data);
 	// 	fn(data);
 	// });
-
-	cloud.on('serverrequest'+lguid, function (params,fn) {
-		console.log("PROCESSING REQUEST FROM :" + params.sender);
-		request.post({
-			url:'http://localhost:8072/osiris3/json/etracs25/' + params.servicename + '.' + params.methodname,
-			json:params
-		},function (error, response, body) {
-			if (!error && response.statusCode == 200) {
-				console.log('SENDING RESPONSE TO : ' +  params.sender)
-				fn(body);
-			}
-		});
+	cloud.on('serverrequest', function(data,fn) {
+		// console.log(data);
+		if(data.reciever === lguid){
+			console.log("PROCESSING REQUEST FROM :" + data.sender);
+				request.post({
+							url:'http://localhost:8072/osiris3/json/etracs25/' + data.servicename + '.' + data.methodname,
+							json:data
+				},function (error, response, body) {
+							if (!error && response.statusCode == 200) {
+									console.log('SENDING RESPONSE TO : ' +  data.sender)
+									fn(body);
+						}
+				});
+		}else{
+			fn(data);
+		}
 	});
+
+	// cloud.on('serverrequestrufy', function (params,fn) {
+	// 	console.log("PROCESSING REQUEST FROM :" + params.sender);
+	// 	request.post({
+	// 		url:'http://localhost:8072/osiris3/json/etracs25/' + params.servicename + '.' + params.methodname,
+	// 		json:params
+	// 	},function (error, response, body) {
+	// 		if (!error && response.statusCode == 200) {
+	// 			console.log('SENDING RESPONSE TO : ' +  params.sender)
+	// 			fn(body);
+	// 		}
+	// 	});
+	// });
 
 	// cloud.on('serverrequest', function (sender,params) {
 	// 	request.post({

@@ -1,6 +1,7 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var request = require('request');
+var ioreq = require("socket.io-request");
 var io = require('socket.io')(server);
 var iocilent = require('socket.io-client');
 var lguid = 'rufy';
@@ -21,7 +22,7 @@ server.listen(3000,function(){
 	// 	console.log(data);
 	// 	fn(data);
 	// });
-	cloud.on('serverrequest', function(data,fn) {
+	cloud.on('serverrequest', function(data) {
 		// console.log(data);
 		if(data.reciever === lguid){
 			console.log("PROCESSING REQUEST FROM :" + data.sender);
@@ -29,15 +30,44 @@ server.listen(3000,function(){
 							url:'http://localhost:8072/osiris3/json/etracs25/' + data.servicename + '.' + data.methodname,
 							json:data
 				},function (error, response, body) {
-							if (!error && response.statusCode == 200) {
-									console.log('SENDING RESPONSE TO : ' +  data.sender)
-									fn(body);
+						if (!error && response.statusCode == 200) {
+							console.log('SENDING RESPONSE TO : ' +  data.sender)
+							cloud.emit('serverresponse',{
+								sender : lguid,
+								reciever : data.sender,
+								result : body
+							});
+									// fn(body);
+							
 						}
 				});
 		}else{
-			fn(data);
+			cloud.emit('serverresponse',data + " from: " + lguid);
+			// fn(data + " from: " + lguid);
 		}
 	});
+
+	// ioreq(cloud).response("serverrequest", function(data, res){ // method, handler
+
+	// 	if(data.reciever === lguid){
+	// 		console.log("PROCESSING REQUEST FROM :" + data.sender);
+	// 			request.post({
+	// 						url:'http://localhost:8072/osiris3/json/etracs25/' + data.servicename + '.' + data.methodname,
+	// 						json:data
+	// 			},function (error, response, body) {
+	// 					if (!error && response.statusCode == 200) {
+	// 						console.log('SENDING RESPONSE TO : ' +  data.sender)
+	// 						res({
+	// 							reciever : lguid,
+	// 							result : body
+	// 						});
+	// 					}
+	// 			});
+	// 	}else{
+	// 		res(data + " from: " + lguid);
+	// 		// fn(data + " from: " + lguid);
+	// 	}
+	// });
 
 	// cloud.on('serverrequestrufy', function (params,fn) {
 	// 	console.log("PROCESSING REQUEST FROM :" + params.sender);

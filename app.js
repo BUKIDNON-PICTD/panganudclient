@@ -35,6 +35,8 @@ server.listen(3000,function(){
 							cloud.emit('serverresponse',{
 								sender : lguid,
 								reciever : data.sender,
+								servicename : data.servicename,
+								methodname : data.methodname,
 								result : body
 							});
 									// fn(body);

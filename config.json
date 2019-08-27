@@ -1,0 +1,12 @@
+{
+    "development": {
+        "config_id": "development",
+        "panganudcloudurl": "http://panganudcloud:9000",
+        "lguid" : "rufy"
+    },
+    "production": {
+        "config_id": "production",
+        "panganudcloudurl": "http://122.54.200.110:7001",
+        "lguid" : "bukidnon"
+    }
+}

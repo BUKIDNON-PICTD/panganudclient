@@ -1,17 +1,17 @@
+const config = require('./config.js');
 var app = require('express')();
 var server = require('http').Server(app);
 var request = require('request');
 var ioreq = require("socket.io-request");
 var io = require('socket.io')(server);
 var iocilent = require('socket.io-client');
-var lguid = 'rufy';
-var cloud = iocilent.connect('http://122.54.200.110:9000');
-// var cloud = iocilent.connect('http://localhost:9000');
+var lguid = global.gConfig.lguid;
+var cloud = iocilent.connect(global.gConfig.panganudcloudurl);
 var connected = false;
 
 
 server.listen(3000,function(){
-	console.log('SERVER RUNNING AT PORT 3000 WITH LGUID = ' + lguid);
+	console.log('Pangaud Client RUNNING AT PORT 3000 WITH LGUID = ' + lguid);
 	
 
 	cloud.emit('checkinserveronline', lguid);

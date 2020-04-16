@@ -1,0 +1,12 @@
+version: '3'
+services:
+  panganudclient:
+    build:
+      context: .      
+      dockerfile: Dockerfile
+    restart: always
+    image: panganudclient:1.001
+    ports:
+      - 7200:3000
+    command: npm run start
+

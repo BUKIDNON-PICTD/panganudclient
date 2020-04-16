@@ -2,10 +2,9 @@
   "name": "panganudclient",
   "version": "1.0.0",
   "description": "tagabukid project panganud",
-  "main": "index.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js"
+    "dev": "nodemon ./src/app.js",
+    "start": "node ./src/app.js"
   },
   "author": "",
   "license": "ISC",

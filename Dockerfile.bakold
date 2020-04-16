@@ -1,0 +1,12 @@
+FROM node:alpine
+
+COPY src /nodejs/src
+COPY package.json /nodejs/package.json
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /nodejs
+
+RUN npm install
+
+EXPOSE 3000:3000

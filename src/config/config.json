@@ -1,0 +1,25 @@
+{
+    "development": {
+        "config_id": "development",
+        "jwtSecret": "long-live-the-ionic-academy",
+        "databasehost" : "localhost",
+        "etracsserver" : "http://localhost:8070",
+        "databasename" : "tagabukid_maguuma",
+        "databaseuser" : "root",
+        "databasepass" : "z7a18q",
+        "panganudcloudurl": "http://localhost:7001",
+        "lguid" : "bukidnon"
+    },
+    "production": {
+        "config_id": "production",
+        "jwtSecret": "long-live-the-ionic-academy",
+        "databasehost" : "172.16.2.49",
+        "etracsserver" : "http://192.168.50.2:8070",
+        "databasename" : "tagabukid_maguuma",
+        "databaseuser" : "root",
+        "databasepass" : "z7a18q",
+        "panganudcloudurl": "http://122.54.200.110:7001",
+        "lguid" : "bukidnon"
+
+    }
+}

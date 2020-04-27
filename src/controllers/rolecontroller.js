@@ -12,7 +12,9 @@ exports.getAll = async (req, res) => {
 exports.getById = async (req, res) => {
   try {
     const { id } = req.params;
-    const role = await Role.findOne();
+    const role = await Role.findOne({
+      where: { id: id },
+    });
     if (role) {
       return res.status(200).json(role);
     }

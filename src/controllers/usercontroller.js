@@ -127,7 +127,7 @@ exports.registerUser = (req, res) => {
         return res.status(400).json({ msg: "The user already exists" });
       }
       //set default user to muni role
-      req.body.roleid = 2;
+      req.body.roleid = 4;
       User2.create(req.body)
         .then((newuser) => {
           return res.status(201).json(user);

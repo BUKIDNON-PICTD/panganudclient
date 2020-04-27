@@ -7,7 +7,8 @@ exports.serverrequest = (req, res) => {
     request.post(
       {
         url: apiurl + req.body.servicename + "." + req.body.methodname,
-        json: req.body.params
+        json: req.body.params,
+        timeout: 5000
       },
       function(error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -29,7 +30,8 @@ exports.serverrequest = (req, res) => {
     request.get(
       {
         url: apiurl + req.body.servicename + "." + req.body.methodname,
-        json: true
+        json: true,
+        timeout: 5000
       },
       function(error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -66,7 +68,8 @@ exports.getmasterfiles = (req, res) => {
     request.post(
       {
         url: apiurl + req.body.servicename + "." + req.body.methodname,
-        json: req.body.params
+        json: req.body.params,
+        timeout: 5000
       },
       function(error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -88,7 +91,8 @@ exports.getmasterfiles = (req, res) => {
     request.get(
       {
         url: apiurl + req.body.servicename + "." + req.body.methodname,
-        json: true
+        json: true,
+        timeout: 5000
       },
       function(error, response, body) {
         if (!error && response.statusCode == 200) {
